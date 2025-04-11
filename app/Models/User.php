@@ -24,6 +24,9 @@ class User extends Authenticatable
         'role'
     ];
 
+    public function isPoster(){
+      return $this->role === 'poster';
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

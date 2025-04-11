@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Models\JobPosting;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         return $user->role === 'poster';
       });
 
-      Gate::define('update-job-posting', function ($user, $jobPosting) {
+      Gate::define('update-job-posting', function ($user, JobPosting $jobPosting) {
           return $user->id === $jobPosting->user_id;
       });
 

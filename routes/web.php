@@ -18,24 +18,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
 
-    //Route::get('job-postings/create', [JobPostingController::class, 'create'])->name('job-postings.create');
-
     Route::get('job-postings/create', [JobPostingController::class, 'create'])->name('job-postings.create')
          ->middleware('can:create-job-posting');
+
     Route::post('job-postings', [JobPostingController::class, 'store'])->name('job-postings.store')
             ->middleware('can:create-job-posting');
+
     Route::get('job-postings/{job_posting}/edit', [JobPostingController::class, 'edit'])->name('job-postings.edit')
         ->middleware('can:update-job-posting,job_posting');        
+
+    Route::put('job-postings/{job_posting}', [JobPostingController::class, 'update'])->name('job-postings.update')
+        ->middleware('can:update-job-posting,job_posting');
+
     // Route::get('job-postings', [JobPostingController::class, 'index'])->name('job-postings.index');
     // Route::get('job-postings/{job_posting}', [JobPostingController::class, 'show'])->name('job-postings.show');
-    // Route::get('job-postings/create', [JobPostingController::class, 'create'])->name('job-postings.create')
-    //     ->middleware('can:create-job-posting');
-    // Route::post('job-postings', [JobPostingController::class, 'store'])->name('job-postings.store')
-    //     ->middleware('can:create-job-posting');
-    // Route::get('job-postings/{job_posting}/edit', [JobPostingController::class, 'edit'])->name('job-postings.edit')
-    //     ->middleware('can:update-job-posting,job_posting');
-    // Route::put('job-postings/{job_posting}', [JobPostingController::class, 'update'])->name('job-postings.update')
-    //     ->middleware('can:update-job-posting,job_posting');
     // Route::delete('job-postings/{job_posting}', [JobPostingController::class, 'destroy'])->name('job-postings.destroy')
     //     ->middleware('can:delete-job-posting,job_posting');
 });

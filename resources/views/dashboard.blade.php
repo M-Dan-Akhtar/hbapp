@@ -12,6 +12,18 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
+            <div class="container">
+              <h1>Available Job Postings</h1>
+              @foreach($job_postings as $job)
+                  <div class="card mb-3">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ $job->summary }}</h5>
+                          <p class="card-text">{{ Str::limit($job->body, 100) }}</p>
+                          <a href="{{ route('job-postings.show', $job->id) }}" class="btn btn-primary">View Details</a>
+                      </div>
+                  </div>
+              @endforeach
+          </div>
         </div>
     </div>
 </x-app-layout>

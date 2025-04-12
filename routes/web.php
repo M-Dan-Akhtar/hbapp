@@ -3,13 +3,15 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobPostingController;
+use App\Models\JobPosting;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $job_postings = JobPosting::latest()->get();
+    return view('dashboard', compact('job_postings'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -30,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::put('job-postings/{job_posting}', [JobPostingController::class, 'update'])->name('job-postings.update')
         ->middleware('can:update-job-posting,job_posting');
 
+    Route::get('job-postings/{job_posting}', [JobPostingController::class, 'show'])->name('job-postings.show');
     // Route::get('job-postings', [JobPostingController::class, 'index'])->name('job-postings.index');
     // Route::get('job-postings/{job_posting}', [JobPostingController::class, 'show'])->name('job-postings.show');
     // Route::delete('job-postings/{job_posting}', [JobPostingController::class, 'destroy'])->name('job-postings.destroy')

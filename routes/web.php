@@ -9,10 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $job_postings = JobPosting::orderBy('created_at', 'desc')->get();;
-    return view('dashboard', compact('job_postings'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [JobPostingController::class, 'index'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\JobPosting;
-
+use Carbon\Carbon;
 class JobPostingController extends Controller
 {
   /**
@@ -12,7 +12,11 @@ class JobPostingController extends Controller
    */
   public function index()
   {
-    //
+    $job_postings = JobPosting::where('created_at', '>=', Carbon::now()->subMonths(2))
+    ->orderBy('created_at', 'desc')
+    ->get();
+
+    return view('dashboard', compact('job_postings'));    
   }
 
   /**

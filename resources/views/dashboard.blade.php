@@ -19,6 +19,7 @@
                       <div class="card-body">
                           <h5 class="card-title">{{ $job->summary }}</h5>
                           <p class="card-text">{{ Str::limit($job->body, 100) }}</p>
+                          <small class="text-muted">Posted on {{ $job->created_at->format('M d, Y') }}</small>
                           <a href="{{ route('job-postings.show', $job->id) }}" class="btn btn-primary">View Details</a>
                       </div>
                   </div>

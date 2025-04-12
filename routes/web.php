@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $job_postings = JobPosting::latest()->get();
+    $job_postings = JobPosting::orderBy('created_at', 'desc')->get();;
     return view('dashboard', compact('job_postings'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 

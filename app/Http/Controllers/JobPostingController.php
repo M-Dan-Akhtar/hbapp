@@ -45,6 +45,7 @@ class JobPostingController extends Controller
    */
   public function show(JobPosting $job_posting)
   {
+    
     return view('job-postings.show', compact('job_posting'));
   }
 

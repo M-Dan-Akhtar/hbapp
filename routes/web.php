@@ -33,8 +33,13 @@ Route::middleware('auth')->group(function () {
         ->middleware('can:update-job-posting,job_posting');
 
     Route::get('job-postings/{job_posting}', [JobPostingController::class, 'show'])->name('job-postings.show');
+
+    Route::post('/job-postings/{job_posting}/interest', [JobPostingController::class, 'expressInterest'])
+    ->middleware('auth')
+    ->name('job-postings.interest');
+
+    
     // Route::get('job-postings', [JobPostingController::class, 'index'])->name('job-postings.index');
-    // Route::get('job-postings/{job_posting}', [JobPostingController::class, 'show'])->name('job-postings.show');
     // Route::delete('job-postings/{job_posting}', [JobPostingController::class, 'destroy'])->name('job-postings.destroy')
     //     ->middleware('can:delete-job-posting,job_posting');
 });

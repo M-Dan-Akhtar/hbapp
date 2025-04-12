@@ -80,4 +80,16 @@ class JobPostingController extends Controller
   {
     //
   }
+
+  public function expressInterest(JobPosting $job_posting)
+  {
+      $user = auth()->user();
+
+      if (!$user->interestedJobs->contains($job_posting->id)) {
+          $user->interestedJobs()->attach($job_posting->id);
+      }
+
+      return redirect()->back()->with('success', 'You have expressed interest in this job!');
+  }
+
 }

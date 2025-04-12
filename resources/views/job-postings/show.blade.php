@@ -12,6 +12,9 @@
     <p>{{ $job_posting->body }}</p>
 
     <a href="{{ route('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    @can('update-job-posting', $job_posting)
+      <a href="{{ route('job-postings.edit', $job_posting->id) }}" class="btn btn-primary ml-2">Edit Job</a>
+    @endcan
 </div>
 </body>
 </html>

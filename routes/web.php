@@ -35,10 +35,15 @@ Route::middleware('auth')->group(function () {
     ->middleware('auth')
     ->name('job-postings.interest');
 
+    Route::delete('job-postings/{job_posting}', [JobPostingController::class, 'destroy'])
+    ->name('job-postings.destroy')
+    ->middleware('can:delete-job-posting,job_posting');
+
     
     // Route::get('job-postings', [JobPostingController::class, 'index'])->name('job-postings.index');
-    // Route::delete('job-postings/{job_posting}', [JobPostingController::class, 'destroy'])->name('job-postings.destroy')
-    //     ->middleware('can:delete-job-posting,job_posting');
+
+
+
 });
 
 require __DIR__.'/auth.php';

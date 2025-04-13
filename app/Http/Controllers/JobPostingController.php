@@ -81,10 +81,12 @@ class JobPostingController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(string $id)
+  public function destroy(JobPosting $job_posting)
   {
-    //
+    $job_posting->delete();
+    return redirect()->route('dashboard')->with('success', 'Job deleted successfully.');
   }
+
 
   public function expressInterest(JobPosting $job_posting)
   {

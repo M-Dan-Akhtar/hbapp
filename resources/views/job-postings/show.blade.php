@@ -21,6 +21,15 @@
           @can('update-job-posting', $job_posting)
             <a href="{{ route('job-postings.edit', $job_posting->id) }}" class="btn btn-primary btn-sm">Edit Job</a>
           @endcan
+
+          @can('delete-job-posting', $job_posting)
+            <form action="{{ route('job-postings.destroy', $job_posting->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this job posting?');">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger btn-sm">Delete Job</button>
+            </form>
+          @endcan
+
         </div>
 
         <div class="mt-4">

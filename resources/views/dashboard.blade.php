@@ -39,7 +39,12 @@
   
   <div class="container py-5">
     <h1 class="mb-4">Available Job Postings</h1>
-
+    @can('create-job-posting')
+      <div class="mb-4">
+        <a href="{{ route('job-postings.create') }}" class="btn btn-success">+ Post New Job</a>
+      </div>
+    @endcan
+  
     @foreach($job_postings as $job)
       <div class="card bg-secondary text-light mb-3">
         <div class="card-body">

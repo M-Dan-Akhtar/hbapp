@@ -4,6 +4,12 @@ A job board made in Laravel and MYSQL.
 Allows "poster" role to create/edit/delete jobs.
 Allows "viewer" roles to mark certain jobs they are interested in.
 
+Mainly focused on backend
+
+
+## What I learned
+* Managing roles using Laravel Authentication and Middleware
+
 ## Screen Shots
 
 <p>Login/Register</p>
